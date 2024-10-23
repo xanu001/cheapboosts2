@@ -117,7 +117,7 @@ const LandingPage = () => {
           ))}
         </div>
       </Alert>
-      <Alert className="rounded-none border-purple-500/20 bg-purple-900/80 transition-all duration-300 hover:bg-purple-900/90">
+      <Alert className="rounded-none border-purple-500/20 bg-blue-900/80 transition-all duration-300 hover:bg-purple-900/90">
         <div className="relative w-full">
           <div className="flex items-center justify-center">
             <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
