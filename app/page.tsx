@@ -1,13 +1,23 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Zap, Clock, TagIcon, AlertCircle, Star, ExternalLink } from "lucide-react";
+import { Zap, Clock, TagIcon, AlertCircle, Star, ExternalLink, Slash  } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import dynamic from 'next/dynamic';
+
+
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 
 // StarField component for section headers
 const StarField = () => (
@@ -33,7 +43,7 @@ const CrispWithNoSSR = dynamic(
 );
 
 const LandingPage = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [scrollY, setScrollY] = useState(0);
 
     const scrollToSection = (sectionId: string) => {
@@ -44,19 +54,19 @@ const LandingPage = () => {
     };
 
     useEffect(() => {
-        const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
+        // const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
+        //     // setMousePosition({ x: e.clientX, y: e.clientY });
+        // };
 
         const handleScroll = () => {
             setScrollY(window.scrollY);
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
+        // window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('scroll', handleScroll);
 
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
+            // window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
@@ -95,28 +105,7 @@ const LandingPage = () => {
                 <div className="relative overflow-hidden bg-zinc-900">
       
       {/* Enhanced announcement banner */}
-      <Alert className="rounded-none border-purple-500/20 bg-purple-900/80 transition-all duration-300 hover:bg-purple-900/90">
-        <div className="relative w-full">
-          <div className="flex items-center justify-center">
-            <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
-            <AlertDescription className="text-purple-200 ml-2">
-              All services are live and fully operational. Get your automated boosts today!
-            </AlertDescription>
-          </div>
-          {/* Small animated stars around announcement */}
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-purple-400 rounded-full animate-twinkle"
-              style={{
-                top: `${50 + Math.cos(i * Math.PI / 3) * 20}%`,
-                left: `${50 + Math.sin(i * Math.PI / 3) * 40}%`,
-                animationDelay: `${i * 0.5}s`
-              }}
-            />
-          ))}
-        </div>
-      </Alert>
+
       <Alert className="rounded-none border-purple-500/20 bg-blue-900/80 transition-all duration-300 hover:bg-purple-900/90">
         <div className="relative w-full">
           <div className="flex items-center justify-center">
@@ -140,13 +129,13 @@ const LandingPage = () => {
         </div>
       </Alert>
       {/* Interactive background gradient that follows mouse */}
-      <div 
+      {/* <div 
         className="fixed inset-0 pointer-events-none"
         style={{
           background: `radial-gradient(circle 400px at ${mousePosition.x}px ${mousePosition.y}px, rgba(168, 85, 247, 0.15), transparent)`,
           transition: 'all 0.15s ease'
         }}
-      />
+      /> */}
       
       {/* Grid background with subtle animation */}
       <div className="fixed inset-0 grid-background opacity-40" />
@@ -154,35 +143,38 @@ const LandingPage = () => {
       {/* Alert Banner with hover effect */}
 
       {/* Enhanced Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300" 
-        style={{ 
-          backgroundColor: `rgba(0, 0, 0, ${Math.min(scrollY / 500, 0.8)})`,
-          backdropFilter: 'blur(16px)',
-          borderBottom: '1px solid rgba(168, 85, 247, 0.2)'
-        }}>
-        <nav className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 glow">
-              <Zap className="h-8 w-8 text-purple-500 animate-pulse-slow" />
-              <span className="text-2xl font-bold text-white">CheapBoosts</span>
-            </div>
-            
-            <div className="hidden md:flex items-center gap-8">
-              {['home', 'about', 'features', 'FAQ', 'vouches'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group"
-                >
-                  <span className="capitalize">{item}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full" />
-                </button>
-              ))}
-            </div>
+      <header 
+      className=" top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{ 
+        backgroundColor: `rgba(0, 0, 0, ${Math.min(scrollY / 500, 0.8)})`,
+        backdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(168, 85, 247, 0.2)'
+      }}
+    >
+      <nav className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 glow">
+            <Zap className="h-8 w-8 text-purple-500 animate-pulse-slow" />
+            <span className="text-2xl font-bold text-white">Cheap Boosts</span>
           </div>
-        </nav>
-      </header>
-
+          
+          <div className="hidden md:flex items-center bg-gray-800/50 rounded-full px-6 py-2 backdrop-blur-md border border-purple-500/20">
+            {['home', 'about', 'features', 'faq', 'feedbacks'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item)}
+                className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group px-4"
+              >
+                <span className="capitalize">{item}</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </nav>
+    </header>
+  
+      
       {/* Enhanced Hero Section */}
       <section id="home" className="min-h-screen relative bg-gradient-to-b from-black via-purple-950/30 to-purple-900/20 pt-16">
         {/* Animated particles background */}
@@ -222,22 +214,29 @@ const LandingPage = () => {
 
         {/* Hero Content with enhanced animations */}
         <div className="relative z-10 flex flex-col items-center justify-center min-h-[85vh] text-center px-4">
-          <Badge 
-            variant="secondary" 
+          <div className="flex flex-col sm:flex-row gap-4 animate-float"
+               style={{ animationDelay: '0.6s' }}>
+                      <Badge 
+            variant="outline"
             className="mb-8 bg-purple-500/20 text-purple-200 border-purple-500/30 animate-pulse-slow"
           >
-            Now Live!
+            discord.gg/cheapboosts
           </Badge>
+          <Badge
+            // variant="" 
+            className="mb-8 bg-purple-500/20 text-purple-200 border-purple-500/30 animate-pulse-slow"
+          >
+            New
+          </Badge>
+          </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight animate-float"
               style={{ animationDelay: '0.2s' }}>
-            Boost Your Server Right<br />
-            Way at Discounted<br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600 animate-gradient">
-              Rates!
+            Get discounted services<br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-purple-600 animate-gradient">
+              From Cheap Boosts
             </span>
           </h1>
-          
           <p className="max-w-2xl text-gray-300 mb-12 leading-relaxed animate-float"
              style={{ animationDelay: '0.4s' }}>
             Welcome to CheapBoosts, your ultimate destination for unleashing the full potential 
@@ -369,6 +368,7 @@ const LandingPage = () => {
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-zinc-900/50">
+      
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-white text-center mb-12">Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -447,6 +447,7 @@ const LandingPage = () => {
       </section>
         {/* Feedbacks Section */}
         <section id="feedbacks" className="py-20 bg-zinc-900">
+        
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-white text-center mb-12">Customer Feedback</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -457,11 +458,13 @@ const LandingPage = () => {
                     <Star key={i} className="h-5 w-5 text-purple-400 fill-current" />
                   ))}
                 </div>
+                
                 <p className="text-gray-300 mb-2">{feedback.comment}</p>
                 <span className="text-gray-400 text-sm">{feedback.date}</span>
               </div>
             ))}
           </div>
+          
         </div>
       </section>
       
