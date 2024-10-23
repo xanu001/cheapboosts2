@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Zap, Clock, TagIcon, AlertCircle, Star, ExternalLink, Slash  } from "lucide-react";
+import { Zap, Clock, TagIcon, AlertCircle, Star, ExternalLink, Slash, BadgeCheck, Signature, Globe, Check  } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -152,9 +152,9 @@ const LandingPage = () => {
       }}
     >
       <nav className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 glow">
-            <Zap className="h-8 w-8 text-purple-500 animate-pulse-slow" />
+        <div className="flex items-center justify-between glow">
+          <div className="flex items-center gap-2">
+            <Zap className="h-8 w-8 text-purple-500 animate-pulse-slow glow" />
             <span className="text-2xl font-bold text-white">Cheap Boosts</span>
           </div>
           
@@ -316,7 +316,7 @@ const LandingPage = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Want to know more about us?
               </h2>
-              <h3 className="text-2xl md:text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600">
+              <h3 className="text-2xl md:text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
                 We're your top choice for Discord needs.
               </h3>
               <p className="text-gray-300 mb-8">
@@ -375,7 +375,10 @@ const LandingPage = () => {
             {[
               { icon: <Clock />, title: "24/7 Support", desc: "Round-the-clock assistance for all your needs" },
               { icon: <Zap />, title: "Instant Delivery", desc: "Automated delivery system for immediate service" },
-              { icon: <TagIcon />, title: "Best Prices", desc: "Competitive pricing without compromising quality" }
+              { icon: <TagIcon />, title: "Best Prices", desc: "Competitive pricing without compromising quality" },
+              { icon: <Globe />, title: "Well Maintained", desc: "Always letting customers know about stock and any issues." },
+              { icon: <Signature />, title: "Quality products", desc: "Automated delivery system for immediate service" },
+              { icon: <BadgeCheck />, title: "300+ Sales", desc: "Extremely trusted in the community. Many vouches" }
             ].map((feature, i) => (
               <div key={i} className="p-6 bg-zinc-800/50 rounded-lg border border-purple-500/20">
                 <div className="text-purple-400 mb-4">{feature.icon}</div>
@@ -467,6 +470,88 @@ const LandingPage = () => {
           
         </div>
       </section>
+      <footer className="bg-gray-900 border-t border-purple-500/10">
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          {/* Brand Column */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Zap className="h-8 w-8 text-purple-500" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                Cheap Boosts
+              </span>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Elevate your Discord experience with our premium server boost services. 
+              Fast, reliable, and secure solutions for your community growth.
+            </p>
+          </div>
+
+          {/* Services Column */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Services</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">Server Boosts</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">Nitro Tokens</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">Social media</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors duration-300">Members UHQ</a></li>
+            </ul>
+          </div>
+
+          {/* Company Column */}
+          <div>
+      <h3 className="text-white font-semibold mb-4">Company</h3>
+      <ul className="flex flex-col space-y-2">
+        {['home', 'about', 'features', 'faq', 'feedbacks'].map((item) => (
+          <li key={item} className="w-full">
+            <button
+              onClick={() => scrollToSection(item)}
+              className="w-full text-left text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group"
+            >
+              <span className="capitalize">{item}</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full" />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+          
+          {/* Connect Column */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Connect</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors duration-300 flex items-center gap-2">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                  </svg>
+                  discord.gg/cheapboosts
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors duration-300 flex items-center gap-2">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22.05 1.577c-.393-.016-.784.08-1.117.235c-.484.186-4.92 1.902-9.41 3.64c-2.26.873-4.518 1.746-6.256 2.415c-1.737.67-3.045 1.168-3.114 1.192c-.46.16-1.082.362-1.61.984c-.133.155-.267.354-.335.628s-.038.622.095.895c.265.547.714.773 1.244.976c1.76.564 3.58 1.102 5.087 1.608c.556 1.96 1.09 3.927 1.618 5.89c.174.394.553.54.944.544l-.002.02s.307.03.606-.042c.3-.07.677-.244 1.02-.565c.377-.354 1.4-1.36 1.98-1.928l4.37 3.226.035.02s.484.34 1.192.388c.354.024.82-.044 1.22-.337c.403-.294.67-.767.795-1.307c.374-1.63 2.853-13.427 3.276-15.38c.04-.222.116-.97.13-1.23c.02-.272-.015-.565-.15-.838c-.13-.27-.34-.46-.59-.59c-.482-.252-.95-.412-1.998-.377zm-3.99 15.226c-.53-.77-1.93-2.757-2.82-4.025l-.228-.31l-.03-.046c1.823-1.827 8.366-8.47 8.532-8.59c-.02-.037-.02-.042-.03-.058c-.84.898-10.424 10.05-11.106 10.702c2.77-1.78 8.853-5.765 8.853-5.765c-.012-.032-.03-.085-.03-.085c-1.396 1.135-7.684 6.252-9.166 7.426l-2.882-1.965z"/>
+                  </svg>
+                  https://t.me/cheapboostsz
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-400 text-sm">
+              © 2024 CheapBoosts. All rights reserved.
+            </p>
+            
+          </div>
+        </div>
+      </div>
+    </footer>
       
       {/* Add keyframes for twinkling animation in global styles */}
       <style jsx global>{`
