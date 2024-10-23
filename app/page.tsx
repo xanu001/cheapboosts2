@@ -168,7 +168,7 @@ const LandingPage = () => {
             </div>
             
             <div className="hidden md:flex items-center gap-8">
-              {['home', 'about', 'products', 'features', 'faq', 'feedbacks'].map((item) => (
+              {['home', 'about', 'features', 'FAQ', 'vouches'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
@@ -275,6 +275,12 @@ const LandingPage = () => {
               <Clock className="h-4 w-4 text-purple-400 animate-pulse" />
               <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">BEST PRICES</span>
               <TagIcon className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">INSTANT DELIVERY</span>
+              <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">24/7 SUPPORT</span>
+              <Clock className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">BEST PRICES</span>
+              <TagIcon className="h-4 w-4 text-purple-400 animate-pulse" />
             </div>
           ))}
         </div>
@@ -338,9 +344,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Products, Features, and Feedback sections remain largely the same but with added hover animations */}
-       {/* Products Section */}
-       <section id="products" className="py-20 relative">
+
+       {/* <section id="products" className="py-20 relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,purple-800,transparent)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-white text-center mb-12">Our Products</h2>
@@ -360,7 +365,7 @@ const LandingPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-zinc-900/50">
@@ -383,7 +388,33 @@ const LandingPage = () => {
       </section>
       
       {/* ... */}
-
+      {/* Enhanced Scrolling Text */}
+      <div className="relative bg-purple-900/30 border-y border-purple-500/20 overflow-hidden py-4 glass-effect">
+        <div className="flex whitespace-nowrap animate-scroll">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div key={index} className="flex items-center gap-8 mx-4">
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Clock className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <TagIcon className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Clock className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <TagIcon className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Clock className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <TagIcon className="h-4 w-4 text-purple-400 animate-pulse" />
+            </div>
+          ))}
+        </div>
+      </div>
       {/* Enhanced FAQ Section with Accordion */}
       <section id="faq" className="py-20 relative overflow-hidden">
         <div className="absolute inset-0">
