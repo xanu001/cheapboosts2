@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app\\\\page.tsx -> ../components/crisp\":{\"id\":\"app\\\\page.tsx -> ../components/crisp\",\"files\":[\"static/chunks/_app-pages-browser_components_crisp_tsx.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST='{"app\\\\page.tsx -> ../components/crisp":{"id":9676,"files":["static/chunks/676.92f48425d6568bed.js"]}}';

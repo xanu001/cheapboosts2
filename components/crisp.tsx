@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
 import { Crisp } from "crisp-sdk-web";
 
@@ -11,4 +11,5 @@ class CrispChat extends Component {
     return null;
   }
 }
-export default CrispChat
+
+export default CrispChat;
