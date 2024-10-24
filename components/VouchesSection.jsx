@@ -13,6 +13,10 @@ const VouchesSection = () => {
         const response = await fetch('https://myvouch.es/api/vouches/cheapboosts');
         if (!response.ok) throw new Error('Failed to fetch vouches');
         const data = await response.json();
+        
+        // Sort vouches from newest to oldest
+        data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
         setVouches(data);
       } catch (err) {
         console.error('Error fetching vouches:', err);
@@ -45,26 +49,26 @@ const VouchesSection = () => {
 
   return (
     <section className="py-20 bg-zinc-900 relative overflow-hidden absolute inset-0 grid-background">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.15),transparent)] animate-pulse-slow" />
-          <div className="absolute inset-0 grid-background opacity-20" />
-        </div>
-              <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute animate-float opacity-20"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                transform: `rotate(${Math.random() * 360}deg)`
-              }}
-            >
-              <div className="w-24 h-24 border border-purple-500/30 rounded-lg" />
-            </div>
-          ))}
-        </div>
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.15),transparent)] animate-pulse-slow" />
+        <div className="absolute inset-0 grid-background opacity-20" />
+      </div>
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 10 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute animate-float opacity-20"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              transform: `rotate(${Math.random() * 360}deg)`
+            }}
+          >
+            <div className="w-24 h-24 border border-purple-500/30 rounded-lg" />
+          </div>
+        ))}
+      </div>
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent pointer-events-none"/>
       <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"/>
