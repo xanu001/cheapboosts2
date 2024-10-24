@@ -1,14 +1,23 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Zap, Clock, TagIcon, AlertCircle, Star, ExternalLink, Slash, BadgeCheck, Signature, Globe, Check  } from "lucide-react";
+import { Zap, Clock, TagIcon, AlertCircle, Star, ExternalLink, Slash, BadgeCheck, Signature, Globe, Check, Sparkles  } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import dynamic from 'next/dynamic';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import VouchesSection from '../components/VouchesSection';
 
 import {
   Breadcrumb,
@@ -18,6 +27,18 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+
+import tokenImage from './/images/tokens.png';
+import toolsImage from './/images/tools.png';
+import boostbotImage from './/images/BB.png';
+import nitroImage from './/images/nitro.png';
+import serverBoostImage from './/images/SB.png';
+import socialboostImage from './/images/Social_Boosts.png';
+import socialpanelImage from './/images/Social_Panel.png';
+import SellixEmbed from '@/components/SellixEmbed';
+
+// import boostImage from '/images/boost.png';
+// import membersImage from '/images/members.png';
 
 // StarField component for section headers
 const StarField = () => (
@@ -45,6 +66,7 @@ const CrispWithNoSSR = dynamic(
 const LandingPage = () => {
     // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [scrollY, setScrollY] = useState(0);
+    const [showEmbed, setShowEmbed] = useState(false); // State to toggle SellixEmbed
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
@@ -70,12 +92,72 @@ const LandingPage = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+  const products = [
+    {
+      id: 1,
+      title: "NITRO TOKENS",
+      subtitle: "UHQ",
+      startingAt: "0.35",
+      image: tokenImage.src,
+      category: "nitro",
+      link: "#blocked"
+    },
+    {
+      id: 2,
+      title: "DISCORD TOOLS",
+      subtitle: "UHQ",
+      startingAt: "3.00",
+      image: toolsImage.src,
+      category: "nitro",
+      link: "https://cheapboostssz.mysellix.io/product/discord-status-rotator"
+    },
+    {
+      id: 3,
+      title: "BOOST BOT",
+      subtitle: "UHQ",
+      startingAt: "3.50",
+      image: boostbotImage.src,
+      category: "nitro",
+      link: "https://cheapboostssz.mysellix.io/"
+    },
+    {
+      id: 4,
+      title: "NITRO",
+      subtitle: "UHQ",
+      startingAt: "HOLD",
+      image: nitroImage.src,
+      category: "nitro",
+      link: "https://cheapboostssz.mysellix.io/"
+    },
+    {
+      id: 5,
+      title: "SERVER BOOST",
+      subtitle: "UHQ",
+      startingAt: "2.99",
+      image: serverBoostImage.src,
+      category: "nitro",
+      link: "https://cheapboostssz.mysellix.io/product/1m-14x-boosts-66e56e7a8275d"
+    },
+    {
+      id: 6,
+      title: "Social_Boosts",
+      subtitle: "UHQ",
+      startingAt: "Unlisted",
+      image: socialboostImage.src,
+      category: "nitro",
+      link: "https://cheapboostssz.mysellix.io/product/tiktok-uhq-followers"
+    },
+    {
+      id: 3,
+      title: "SOCIALPANEL",
+      subtitle: "UHQ",
+      startingAt: "10.00",
+      image: socialpanelImage.src,
+      category: "nitro",
+      link: "https://cheapboostssz.mysellix.io/product/social-boost-panel"
+    },
 
-    const feedbacks = [
-        { id: 1, rating: 5, comment: "Excellent service!", date: "2024-10-23" },
-        { id: 2, rating: 5, comment: "Fast delivery!", date: "2024-10-22" },
-        { id: 3, rating: 5, comment: "Great support!", date: "2024-10-22" }
-    ];
+  ];
 
     const faqItems = [
         {
@@ -106,28 +188,6 @@ const LandingPage = () => {
       
       {/* Enhanced announcement banner */}
 
-      <Alert className="rounded-none border-purple-500/20 bg-blue-900/80 transition-all duration-300 hover:bg-purple-900/90">
-        <div className="relative w-full">
-          <div className="flex items-center justify-center">
-            <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
-            <AlertDescription className="text-purple-200 ml-2">
-              All services are live and fully operational. Get your automated boosts today!
-            </AlertDescription>
-          </div>
-          {/* Small animated stars around announcement */}
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-purple-400 rounded-full animate-twinkle"
-              style={{
-                top: `${50 + Math.cos(i * Math.PI / 3) * 20}%`,
-                left: `${50 + Math.sin(i * Math.PI / 3) * 40}%`,
-                animationDelay: `${i * 0.5}s`
-              }}
-            />
-          ))}
-        </div>
-      </Alert>
       {/* Interactive background gradient that follows mouse */}
       {/* <div 
         className="fixed inset-0 pointer-events-none"
@@ -144,32 +204,76 @@ const LandingPage = () => {
 
       {/* Enhanced Navigation */}
       <header 
-      className=" top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{ 
         backgroundColor: `rgba(0, 0, 0, ${Math.min(scrollY / 500, 0.8)})`,
-        backdropFilter: 'blur(16px)',
+        backdropFilter: 'blur-16px',
         borderBottom: '1px solid rgba(168, 85, 247, 0.2)'
       }}
     >
+           <Alert className="rounded-none border-purple-500/20 bg-blue-900/80 transition-all duration-300 hover:bg-purple-900/90">
+        <div className="relative w-full">
+          <div className="flex items-center justify-center">
+            <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
+            <AlertDescription className="text-purple-200 ml-2">
+              All services are live and fully operational. 24/10/24
+            </AlertDescription>
+          </div>
+          {/* Small animated stars around announcement */}
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-purple-400 rounded-full animate-twinkle"
+              style={{
+                top: `${50 + Math.cos(i * Math.PI / 3) * 20}%`,
+                left: `${50 + Math.sin(i * Math.PI / 3) * 40}%`,
+                animationDelay: `${i * 0.5}s`
+              }}
+            />
+          ))}
+        </div>
+      </Alert>
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+      
       <nav className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between glow">
-          <div className="flex items-center gap-2">
-            <Zap className="h-8 w-8 text-purple-500 animate-pulse-slow glow" />
-            <span className="text-2xl font-bold text-white">Cheap Boosts</span>
+        <div className="flex items-center justify-between relative">
+          {/* Logo Section */}
+          <div className="flex items-center gap-2 group">
+            <div className="relative">
+              <div className="absolute -inset-1 bg-purple-500 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-300" />
+              <Sparkles className="h-8 w-8 text-purple-400 relative animate-pulse-slow" />
+            </div>
+            <span className="text-2xl font-bold text-white relative">
+              CheapBoosts
+              <span className="absolute -inset-1 bg-purple-500/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition duration-300" />
+            </span>
           </div>
           
-          <div className="hidden md:flex items-center bg-gray-800/50 rounded-full px-6 py-2 backdrop-blur-md border border-purple-500/20">
-            {['home', 'about', 'features', 'faq', 'feedbacks'].map((item) => (
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center bg-zinc-800/50 rounded-full px-6 py-2 backdrop-blur-sm border border-purple-500/20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-purple-500/5 animate-gradient" />
+            
+            {["Home" ,'About', 'Products', 'Features', 'FAQ'].map((item) => (
               <button
                 key={item}
-                onClick={() => scrollToSection(item)}
-                className="text-gray-300 hover:text-white transition-all duration-300 hover:scale-105 relative group px-4"
+                onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
+                className="relative px-4 py-1 group transition duration-300"
               >
-                <span className="capitalize">{item}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full" />
+                <span className="relative z-10 text-gray-300 group-hover:text-white transition-colors duration-300">
+                  {item}
+                </span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 opacity-0 group-hover:w-full group-hover:opacity-100 transition-all duration-300" />
+                <span className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 rounded-full transition-all duration-300" />
               </button>
             ))}
           </div>
+
+          {/* Mobile Menu Button - You can expand this later */}
+          <button className="md:hidden text-white p-2">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </nav>
     </header>
@@ -284,9 +388,24 @@ const LandingPage = () => {
           ))}
         </div>
       </div>
-
       {/* Enhanced About Section */}
-      <section id="about" className="py-20 relative">
+      <section id="about"  className="py-60 relative absolute inset-0 grid-background">
+      <div className="absolute inset-0 overflow-hidden">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-float opacity-20"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                transform: `rotate(${Math.random() * 360}deg)`
+              }}
+            >
+              <div className="w-24 h-24 border border-purple-500/30 rounded-lg" />
+            </div>
+          ))}
+        </div>
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.15),transparent)] animate-pulse-slow" />
           <div className="absolute inset-0 grid-background opacity-20" />
@@ -343,31 +462,127 @@ const LandingPage = () => {
         </div>
       </section>
 
-
-       {/* <section id="products" className="py-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,purple-800,transparent)]" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white text-center mb-12">Our Products</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <Card key={i} className="bg-zinc-800/50 border-purple-500/20">
-                <CardHeader>
-                  <CardTitle className="text-white">Product {i + 1}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-300">Starting at $0.99</p>
-                  <button className="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg">
-                    Purchase
-                  </button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+ {/* Enhanced Scrolling Text */}
+ <div className="relative bg-purple-900/30 border-y border-purple-500/20 overflow-hidden py-4 glass-effect">
+        <div className="flex whitespace-nowrap animate-scroll">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div key={index} className="flex items-center gap-8 mx-4">
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Clock className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <TagIcon className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Clock className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <TagIcon className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Zap className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <Clock className="h-4 w-4 text-purple-400 animate-pulse" />
+              <span className="text-purple-300 font-medium hover:text-purple-200 transition-colors">discord.gg/cheapboosts</span>
+              <TagIcon className="h-4 w-4 text-purple-400 animate-pulse" />
+            </div>
+          ))}
         </div>
-      </section> */}
+        
+      </div>
+      <section id="products" className="py-24 bg-black-900 relative overflow-hidden absolute inset-0 grid-background">
+      <div className="absolute inset-0 overflow-hidden">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-float opacity-20"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                transform: `rotate(${Math.random() * 360}deg)`
+              }}
+            >
+              <div className="w-24 h-24 border border-purple-500/30 rounded-lg" />
+            </div>
+          ))}
+        </div>
+      <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.15),transparent)] animate-pulse-slow" />
+          <div className="absolute inset-0 grid-background opacity-20" />
+        </div>
+  {/* Background effects */}
+
+  <div className="max-w-7xl mx-auto px-6 relative">
+    <div className="text-center mb-4">
+      <div className="flex items-center justify-center gap-2 text-purple-400 mb-2">
+        <Sparkles className="w-5 h-5" />
+        <p>Explore the products</p>
+      </div>
+      <h2 className="text-4xl font-bold text-white mb-12">Products</h2>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {products.map((product) => (
+  <Card key={product.id} className="group bg-zinc-800/50 border-purple-500/20 hover:border-purple-500/40 hover:bg-zinc-800/70 transition-all duration-300">
+    <CardContent className="p-0">
+      {/* Animated line for each card */}
+      <div className="absolute top-0 left-0 right-0 h-1 overflow-hidden">
+      </div>
+
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+        <img 
+          src={product.image} 
+          alt={product.title}
+          className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    </CardContent>
+    <CardFooter className="flex items-center justify-between p-4 bg-zinc-900/50">
+      <div className="text-gray-400">
+        Starting at: <span className="text-purple-400 font-bold">${product.startingAt}</span>
+      </div>
+      {/* Button redirects to a website */}
+      <Button 
+        variant="ghost" 
+        className="bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 hover:text-purple-300"
+        onClick={() => window.location.href = product.link} // Redirect on click
+      >
+        Purchase
+      </Button>
+    </CardFooter>
+  </Card>
+))}
+    </div>
+  </div>
+</section>
+
+
+    
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-zinc-900/50">
+      <section id="features" className="py-24 bg-black-900 relative overflow-hidden absolute inset-0 grid-background">
+      <div className="absolute inset-0 overflow-hidden">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-float opacity-20"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                transform: `rotate(${Math.random() * 360}deg)`
+              }}
+            >
+              <div className="w-24 h-24 border border-purple-500/30 rounded-lg" />
+            </div>
+          ))}
+        </div>
+      <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.15),transparent)] animate-pulse-slow" />
+          <div className="absolute inset-0 grid-background opacity-20" />
+        </div>
       
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-white text-center mb-12">Features</h2>
@@ -419,7 +634,23 @@ const LandingPage = () => {
         </div>
       </div>
       {/* Enhanced FAQ Section with Accordion */}
-      <section id="faq" className="py-20 relative overflow-hidden">
+      <section id="faq" className="py-24 bg-black-900 relative overflow-hidden absolute inset-0 grid-background">
+      <div className="absolute inset-0 overflow-hidden">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-float opacity-20"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                transform: `rotate(${Math.random() * 360}deg)`
+              }}
+            >
+              <div className="w-24 h-24 border border-purple-500/30 rounded-lg" />
+            </div>
+          ))}
+        </div>
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(168,85,247,0.15),transparent)] animate-pulse-slow" />
           <div className="absolute inset-0 grid-background opacity-20" />
@@ -448,29 +679,8 @@ const LandingPage = () => {
           </Accordion>
         </div>
       </section>
-        {/* Feedbacks Section */}
-        <section id="feedbacks" className="py-20 bg-zinc-900">
-        
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-white text-center mb-12">Customer Feedback</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {feedbacks.map((feedback) => (
-              <div key={feedback.id} className="p-6 bg-zinc-800/50 rounded-lg border border-purple-500/20">
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: feedback.rating }).map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-purple-400 fill-current" />
-                  ))}
-                </div>
-                
-                <p className="text-gray-300 mb-2">{feedback.comment}</p>
-                <span className="text-gray-400 text-sm">{feedback.date}</span>
-              </div>
-            ))}
-          </div>
-          
-        </div>
-      </section>
-      <footer className="bg-gray-900 border-t border-purple-500/10">
+      <VouchesSection/>
+      <footer className="bg-black-900 border-t border-purple-500/10">
       <div className="max-w-7xl mx-auto px-6 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -503,7 +713,7 @@ const LandingPage = () => {
           <div>
       <h3 className="text-white font-semibold mb-4">Company</h3>
       <ul className="flex flex-col space-y-2">
-        {['home', 'about', 'features', 'faq', 'feedbacks'].map((item) => (
+      {["home" ,'about', 'products', 'features', 'FAQ'].map((item) => (
           <li key={item} className="w-full">
             <button
               onClick={() => scrollToSection(item)}
@@ -540,7 +750,9 @@ const LandingPage = () => {
             </ul>
           </div>
         </div>
-
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent pointer-events-none" />
+  <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+  <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -565,6 +777,7 @@ const LandingPage = () => {
         }
       `}</style>
     </div>
+    
         </div>
     );
 };
